@@ -78,6 +78,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="companyNameLabel" destination="Os6-Rz-jRA" id="5Tt-CY-Ifg"/>
+                                            <outlet property="contactImageView" destination="pbD-ag-WIX" id="JYb-Ye-Pi5"/>
                                             <outlet property="favoriteImageView" destination="fCe-oG-eTN" id="MIW-wg-ob6"/>
                                             <outlet property="nameLabel" destination="dPK-lo-48K" id="cjJ-5U-liN"/>
                                         </connections>
@@ -216,6 +217,7 @@
                     </view>
                     <connections>
                         <outlet property="companyNameLabel" destination="RaZ-NS-30N" id="Anh-kP-bXK"/>
+                        <outlet property="contactImageView" destination="RRU-YO-GwM" id="Bi2-68-BEG"/>
                         <outlet property="nameLabel" destination="LXy-EO-pFn" id="nHR-Oy-ZkF"/>
                         <outlet property="selectedContactTableView" destination="V6J-EL-pBJ" id="0cZ-QK-9tY"/>
                     </connections>

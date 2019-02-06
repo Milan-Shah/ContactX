@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RealmSwift
+import AlamofireImage
 
 class ListViewController: UIViewController {
     
@@ -92,19 +93,36 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.favoriteImageView.image = UIImage(named: String(format: "favorite-star-true"))
         cell.favoriteImageView.isHidden = true
         
+        cell.contactImageView.layer.masksToBounds = true
+        cell.contactImageView.layer.cornerRadius = 15.0
+        
+        // Setting placeholder image
+        cell.contactImageView.image = UIImage(named: "user-small")
+        
         if indexPath.section == 0 {
             if let contactAtIndex = favoriteContacts?[indexPath.row] {
                 cell.companyNameLabel.text = contactAtIndex.companyName
-                cell.nameLabel.text = contactAtIndex.name
+                
+                // set image with AlamofireImage - it contains the caching functionality within using the url provided:
+                if let smallImageURL = URL(string: contactAtIndex.smallImageURL) {
+                    cell.contactImageView.af_setImage(withURL: smallImageURL)
+                }
+                
                 if contactAtIndex.isFavorite {
                     cell.favoriteImageView.isHidden = false
                 }
             }
             
         } else {
+            
             if let contactAtIndex = otherContacts?[indexPath.row] {
                 cell.companyNameLabel.text = contactAtIndex.companyName
                 cell.nameLabel.text = contactAtIndex.name
+                
+                // set image with AlamofireImage - it contains the caching functionality within using the url provided:
+                if let smallImageURL = URL(string: contactAtIndex.smallImageURL) {
+                    cell.contactImageView.af_setImage(withURL: smallImageURL)
+                }
             }
         }
         
@@ -136,5 +154,6 @@ class ContactsListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var companyNameLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
+    @IBOutlet weak var contactImageView: UIImageView!
     
 }
