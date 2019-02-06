@@ -8,12 +8,14 @@
 
 import Foundation
 import UIKit
+import AlamofireImage
 
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var selectedContactTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var companyNameLabel: UILabel!
+    @IBOutlet weak var contactImageView: UIImageView!
     
     var presenter: DetailViewToPresenterProtocol?
     var selectedContact: Contacts?
@@ -26,10 +28,17 @@ class DetailViewController: UIViewController {
         self.nameLabel.text = selectedContact?.name
         self.companyNameLabel.text = selectedContact?.companyName
         
+        contactImageView.layer.masksToBounds = true
+        contactImageView.layer.cornerRadius = 15.0
+        
+        if let largeImageURL = URL(string: (selectedContact?.largeImageURL)!) {
+            contactImageView.af_setImage(withURL: largeImageURL)
+        }
+
         // Navigation bar button
         addFavoriteBarButtonItem()
     }
-    
+
     func updateBarButtonImage() {
         
         button.setImage(UIImage(named: "favorite-star-false"), for: .normal)
