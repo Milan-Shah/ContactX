@@ -102,6 +102,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             if let contactAtIndex = favoriteContacts?[indexPath.row] {
                 cell.companyNameLabel.text = contactAtIndex.companyName
+                cell.nameLabel.text = contactAtIndex.name
                 
                 // set image with AlamofireImage - it contains the caching functionality within using the url provided:
                 if let smallImageURL = URL(string: contactAtIndex.smallImageURL) {
